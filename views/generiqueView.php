@@ -18,7 +18,7 @@ $head = "<!doctype html>
 
 function buildNav($get)
 {
-    $nav = "
+  $nav = "
 <nav class='navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light'>
   <div class='container'>
     <a class='navbar-brand' href='index.php'>Navbar</a>
@@ -41,7 +41,7 @@ function buildNav($get)
   </div>
 </nav>
  ";
-    return $nav;
+  return $nav;
 }
 
 

@@ -4,10 +4,10 @@ $html = "";
 
 if (isset($_GET['p'])) {
     if ($_GET['p'] == 'graphique') {
-        $html .= $head . buildNav($_GET['p']) . $bodyGraph .  $footer;
+        $html .= setHead() . buildNav($_GET['p']) . setBody('body') . setFooter();
     } elseif ($_GET['p'] == 'connexion') {
-        $html .= $head . buildNav($_GET['p']) . $bodyConnexion . $footer;
+        $html .= setHead() . buildNav($_GET['p']) . setBody('connexion') . setFooter();
     }
 } else {
-    $html .= $head . buildNav('') . $body . $footer;
+    $html .= setHead() . buildNav('') . setBody() . setFooter();
 }

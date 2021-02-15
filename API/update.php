@@ -18,12 +18,12 @@ $data = json_decode(file_get_contents("php://input"));
 if (isset($data->id)) {
 
     $msg['message'] = '';
-    $post_id = $data->id;
+    $releve_id = $data->id;
 
     //GET POST BY ID FROM DATABASE
-    $get_post = "SELECT * FROM `posts` WHERE id=:post_id";
-    $get_stmt = $conn->prepare($get_post);
-    $get_stmt->bindValue(':post_id', $post_id, PDO::PARAM_INT);
+    $get_releve = "SELECT * FROM `releves` WHERE id=:releve_id";
+    $get_stmt = $conn->prepare($get_releve);
+    $get_stmt->bindValue(':releve_id', $releve_id, PDO::PARAM_INT);
     $get_stmt->execute();
 
 
@@ -34,20 +34,19 @@ if (isset($data->id)) {
         $row = $get_stmt->fetch(PDO::FETCH_ASSOC);
 
         // CHECK, IF NEW UPDATE REQUEST DATA IS AVAILABLE THEN SET IT OTHERWISE SET OLD DATA
-        $post_title = isset($data->title) ? $data->title : $row['title'];
-        $post_body = isset($data->body) ? $data->body : $row['body'];
-        $post_author = isset($data->author) ? $data->author : $row['author'];
+        $releve_temperature = isset($data->temperature) ? $data->temperature : $row['temperature'];
+        $releve_humidite = isset($data->humidite) ? $data->humidite : $row['humidite'];
 
-        $update_query = "UPDATE `posts` SET title = :title, body = :body, author = :author 
+        $update_query = "UPDATE `releves` SET temperature = :temperature, humidite = :humidite, modified_at = :modified_at 
         WHERE id = :id";
 
         $update_stmt = $conn->prepare($update_query);
 
         // DATA BINDING AND REMOVE SPECIAL CHARS AND REMOVE TAGS
-        $update_stmt->bindValue(':title', htmlspecialchars(strip_tags($post_title)), PDO::PARAM_STR);
-        $update_stmt->bindValue(':body', htmlspecialchars(strip_tags($post_body)), PDO::PARAM_STR);
-        $update_stmt->bindValue(':author', htmlspecialchars(strip_tags($post_author)), PDO::PARAM_STR);
-        $update_stmt->bindValue(':id', $post_id, PDO::PARAM_INT);
+        $update_stmt->bindValue(':temperature', htmlspecialchars(strip_tags($releve_temperature)), PDO::PARAM_INT);
+        $update_stmt->bindValue(':humidite', htmlspecialchars(strip_tags($releve_humidite)), PDO::PARAM_INT);
+        $update_stmt->bindValue(':modified_at', date("d-m-Y H:i:s"));
+        $update_stmt->bindValue(':id', $releve_id, PDO::PARAM_INT);
 
 
         if ($update_stmt->execute()) {
@@ -60,4 +59,6 @@ if (isset($data->id)) {
     }
 
     echo  json_encode($msg);
+}else {
+    echo 'pas de id';
 }

@@ -18,17 +18,18 @@ $data = json_decode(file_get_contents("php://input"));
 $msg['message'] = '';
 
 // CHECK IF RECEIVED DATA FROM THE REQUEST
-if (isset($data->title) && isset($data->body) && isset($data->author)) {
+if (isset($data->temperature) && isset($data->humidite) && isset($data->id_sonde)) {
     // CHECK DATA VALUE IS EMPTY OR NOT
-    if (!empty($data->title) && !empty($data->body) && !empty($data->author)) {
+    if (!empty($data->temperature) && !empty($data->humidite) && !empty($data->id_sonde)) {
 
-        $insert_query = "INSERT INTO `posts`(title,body,author) VALUES(:title,:body,:author)";
+        $insert_query = "INSERT INTO `releves`(temperature,humidite,id_sonde, created_at) VALUES(:temperature,:humidite,:id_sonde,:created_at)";
 
         $insert_stmt = $conn->prepare($insert_query);
         // DATA BINDING
-        $insert_stmt->bindValue(':title', htmlspecialchars(strip_tags($data->title)), PDO::PARAM_STR);
-        $insert_stmt->bindValue(':body', htmlspecialchars(strip_tags($data->body)), PDO::PARAM_STR);
-        $insert_stmt->bindValue(':author', htmlspecialchars(strip_tags($data->author)), PDO::PARAM_STR);
+        $insert_stmt->bindValue(':temperature', htmlspecialchars(strip_tags($data->temperature)), PDO::PARAM_INT);
+        $insert_stmt->bindValue(':humidite', htmlspecialchars(strip_tags($data->humidite)), PDO::PARAM_INT);
+        $insert_stmt->bindValue(':id_sonde', htmlspecialchars(strip_tags($data->id_sonde)), PDO::PARAM_INT);
+        $insert_stmt->bindValue(':created_at', date("d-m-Y H:i:s"));
 
         if ($insert_stmt->execute()) {
             $msg['message'] = 'Data Inserted Successfully';
@@ -39,7 +40,7 @@ if (isset($data->title) && isset($data->body) && isset($data->author)) {
         $msg['message'] = 'Oops! empty field detected. Please fill all the fields';
     }
 } else {
-    $msg['message'] = 'Please fill all the fields | title, body, author';
+    $msg['message'] = 'Please fill all the fields | temperature, humidite, id_sonde';
 }
 //ECHO DATA IN JSON FORMAT
 echo  json_encode($msg);

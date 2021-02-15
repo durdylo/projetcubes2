@@ -19,24 +19,24 @@ $data = json_decode(file_get_contents("php://input"));
 if (isset($data->id)) {
     $msg['message'] = '';
 
-    $post_id = $data->id;
+    $releve_id = $data->id;
 
     //GET POST BY ID FROM DATABASE
     // YOU CAN REMOVE THIS QUERY AND PERFORM ONLY DELETE QUERY
-    $check_post = "SELECT * FROM `posts` WHERE id=:post_id";
-    $check_post_stmt = $conn->prepare($check_post);
-    $check_post_stmt->bindValue(':post_id', $post_id, PDO::PARAM_INT);
-    $check_post_stmt->execute();
+  $check_releve = "SELECT * FROM `releves` WHERE id=:releve_id";
+  $check_releve_stmt = $conn->prepare($check_releve);
+  $check_releve_stmt->bindValue(':releve_id', $releve_id, PDO::PARAM_INT);
+  $check_releve_stmt->execute();
 
     //CHECK WHETHER THERE IS ANY POST IN OUR DATABASE
-    if ($check_post_stmt->rowCount() > 0) {
+    if ($check_releve_stmt->rowCount() > 0) {
 
         //DELETE POST BY ID FROM DATABASE
-        $delete_post = "DELETE FROM `posts` WHERE id=:post_id";
-        $delete_post_stmt = $conn->prepare($delete_post);
-        $delete_post_stmt->bindValue(':post_id', $post_id, PDO::PARAM_INT);
+        $dcheck_releve = "DELETE FROM `releves` WHERE id=:releve_id";
+        $dcheck_releve_stmt = $conn->prepare($dcheck_releve);
+        $dcheck_releve_stmt->bindValue(':releve_id', $releve_id, PDO::PARAM_INT);
 
-        if ($delete_post_stmt->execute()) {
+        if ($dcheck_releve_stmt->execute()) {
             $msg['message'] = 'Post Deleted Successfully';
         } else {
             $msg['message'] = 'Post Not Deleted';

@@ -1,19 +1,9 @@
-function initialize() {
-    var opts = {sendMethod: 'auto'};
-    // Replace the data source URL on next line with your data source URL.
-    var query = new google.visualization.Query('http://localhost/web/projetCubes2/API/read.php', opts);
+//google.charts.load('current', {'packages': ['corechart']});
+//google.charts.setOnLoadCallback(drawChart);
 
-    // Optional request to return only column C and the sum of column B, grouped by C members.
-
-    // Send the query with a callback function.
-    query.send(handleQueryResponse);
-}
-
-google.charts.load('current', {'packages': ['corechart']});
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-    var data = google.visualization.arrayToDataTable([
+function drawChart(json) {
+    console.log(json);
+    /*var data = google.visualization.arrayToDataTable([
         ['Year', 'Sales', 'Expenses'],
         ['2004', 1000, 400],
         ['2005', 1170, 460],
@@ -29,7 +19,21 @@ function drawChart() {
 
     var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
-    chart.draw(data, options);
+    chart.draw(data, options);*/
 
 
 }
+
+function getReleves(query) {
+
+    fetch(query, {
+        method: "GET",
+        Otions: {
+            'Access-Control-Allow-Origin': '*'
+        }
+    })
+        .then(response => response.json())
+        .then(json => drawChart(json));
+}
+
+getReleves('http://localhost/web/projetCubes2/API/readReleve.php');

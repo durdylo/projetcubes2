@@ -1,6 +1,4 @@
 <?php
-include_once("assets/phpChart_Lite/conf.php");
-
 /**
  * @return string
  */

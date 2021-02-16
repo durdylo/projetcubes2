@@ -58,7 +58,7 @@ if (isset($data->id)) {
         $msg['message'] = 'Invlid ID';
     }
 
-    echo  json_encode($msg);
-}else {
+    echo json_encode($msg);
+} else {
     echo 'pas de id';
 }

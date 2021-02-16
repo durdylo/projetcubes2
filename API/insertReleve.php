@@ -43,4 +43,4 @@ if (isset($data->temperature) && isset($data->humidite) && isset($data->id_sonde
     $msg['message'] = 'Please fill all the fields | temperature, humidite, id_sonde';
 }
 //ECHO DATA IN JSON FORMAT
-echo  json_encode($msg);
+echo json_encode($msg);

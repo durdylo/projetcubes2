@@ -18,7 +18,7 @@ $data = json_decode(file_get_contents("php://input"));
 $msg['message'] = '';
 
 // CHECK IF RECEIVED DATA FROM THE REQUEST
-if (isset($data->nom) && isset($data->lieu) ) {
+if (isset($data->nom) && isset($data->lieu)) {
     // CHECK DATA VALUE IS EMPTY OR NOT
     if (!empty($data->nom) && !empty($data->lieu)) {
 
@@ -42,4 +42,4 @@ if (isset($data->nom) && isset($data->lieu) ) {
     $msg['message'] = 'Please fill all the fields | nom, lieu';
 }
 //ECHO DATA IN JSON FORMAT
-echo  json_encode($msg);
+echo json_encode($msg);

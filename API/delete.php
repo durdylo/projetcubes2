@@ -23,10 +23,10 @@ if (isset($data->id)) {
 
     //GET POST BY ID FROM DATABASE
     // YOU CAN REMOVE THIS QUERY AND PERFORM ONLY DELETE QUERY
-  $check_releve = "SELECT * FROM `releves` WHERE id=:releve_id";
-  $check_releve_stmt = $conn->prepare($check_releve);
-  $check_releve_stmt->bindValue(':releve_id', $releve_id, PDO::PARAM_INT);
-  $check_releve_stmt->execute();
+    $check_releve = "SELECT * FROM `releves` WHERE id=:releve_id";
+    $check_releve_stmt = $conn->prepare($check_releve);
+    $check_releve_stmt->bindValue(':releve_id', $releve_id, PDO::PARAM_INT);
+    $check_releve_stmt->execute();
 
     //CHECK WHETHER THERE IS ANY POST IN OUR DATABASE
     if ($check_releve_stmt->rowCount() > 0) {
@@ -45,5 +45,5 @@ if (isset($data->id)) {
         $msg['message'] = 'Invlid ID';
     }
     // ECHO MESSAGE IN JSON FORMAT
-    echo  json_encode($msg);
+    echo json_encode($msg);
 }

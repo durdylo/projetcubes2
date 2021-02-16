@@ -4,7 +4,8 @@ include_once("assets/phpChart_Lite/conf.php");
 /**
  * @return string
  */
-function setHead() {
+function setHead()
+{
     return "<!doctype html>
 
     <html lang='en'>
@@ -16,7 +17,8 @@ function setHead() {
     
         <!-- Bootstrap CSS -->
         <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1' crossorigin='anonymous'>
-    
+              <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+
         <title>Projet cubes 2</title>
     </head>
     <body>
@@ -30,7 +32,7 @@ function setHead() {
  */
 function buildNav($get)
 {
-  $nav = "
+    $nav = "
 <nav class='navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light'>
   <div class='container'>
     <a class='navbar-brand' href='index.php'>Navbar</a>
@@ -53,7 +55,7 @@ function buildNav($get)
   </div>
 </nav>
  ";
-  return $nav;
+    return $nav;
 }
 
 
@@ -61,59 +63,20 @@ function buildNav($get)
  * @param false $page string
  * @return string
  */
-function setBody($page=false){
+function setBody($page = false)
+{
     $html = "";
-    if($page){
+    if ($page) {
 
         switch ($page) {
             case 'grahpique':
-                //set phpChart grid properties
-                $s1 = array(11, 9, 5, 12, 14);
-                $s2 = array(6, 8, 7, 13, 9);
-
-                $pc = new C_PhpChartX(array($s1, $s2), 'basic_chart');
-                $pc->set_animate(true);
-                $pc->set_title(array('text' => 'Basic Chart'));
-
-
-                $pc->set_grid(array(
-                    'background' => 'lightyellow',
-                    'borderWidth' => 0,
-                    'borderColor' => '#000000',
-                    'shadow' => true,
-                    'shadowWidth' => 10,
-                    'shadowOffset' => 3,
-                    'shadowDepth' => 3,
-                    'shadowColor' => 'rgba(230, 230, 230, 0.07)'
-                ));
-
-
-                $pc->set_xaxes(array(
-                    'xaxis'  => array(
-                        'borderWidth' => 2,
-                        'borderColor' => '#999999',
-                        'min' => '0',
-                        'max' => 8,
-                        'tickOptions' => array('showGridline' => false)
-                    )
-                ));
-
-                $pc->set_yaxes(array(
-                    'yaxis' => array(
-                        'borderWidth' => 0,
-                        'borderColor' => '#ffffff',
-                        'autoscale' => true,
-                        'min' => '0',
-                        'max' => 20,
-                        'numberTicks' => 21,
-                        'label' => 'Energy Use'
-                    )
-                ));
 
                 $html .= "  <main class='container'>
                                 <h1>Page du graphique</h1>
+                                    <div id='curve_chart'></div>
+
+                                </main>
                                ";
-                $html.= $pc->draw() ."</main> ";
                 break;
             case 'connexion':
                 $html .= "
@@ -137,7 +100,7 @@ function setBody($page=false){
                         ";
                 break;
         }
-    }else{
+    } else {
         $html .= "
             <main class='container'>
             <h1>Accueil</h1>
@@ -150,10 +113,13 @@ function setBody($page=false){
 /**
  * @return string
  */
-function setFooter(){
+function setFooter()
+{
     return "<footer></footer>
 
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js' integrity='sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW' crossorigin='anonymous'></script>
+<script type='text/javascript' src='assets/graph.js'>
+    </script>
     </main>
     </body>
     

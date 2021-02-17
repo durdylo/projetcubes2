@@ -5,8 +5,8 @@ class Database
 
     private $db_host = 'localhost';
     private $db_name = 'php_api';
-    private $db_username = 'lolo';
-    private $db_password = 'Loic10101998Denis.';
+    private $db_username = 'cesi';
+    private $db_password = 'issou';
 
 
     public function dbConnection()

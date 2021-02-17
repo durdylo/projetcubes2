@@ -30,7 +30,8 @@ function getReleves(query) {
         method: "GET",
         Otions: {
             'Access-Control-Allow-Origin': '*'
-        }
+        },
+
     })
         .then(response => response.json())
         .then(json => drawChart(json));

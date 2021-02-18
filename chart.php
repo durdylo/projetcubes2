@@ -1,31 +1,7 @@
-<!doctype html>
-<html>
-
-<head>
-	<title>Line Chart</title>
 	<script src="js/Chart.min.js"></script>
 	<script src="js/utils.js"></script>
-	<style>
-	canvas{
-		-moz-user-select: none;
-		-webkit-user-select: none;
-		-ms-user-select: none;
-	}
-	</style>
-</head>
 
-<body>
-	<div style="width:75%;">
-		<canvas id="canvas"></canvas>
-	</div>
-	<br>
-	<br>
-	<button id="randomizeData">Randomize Data</button>
-	<button id="addDataset">Add Dataset</button>
-	<button id="removeDataset">Remove Dataset</button>
-	<button id="addData">Add Data</button>
-	<button id="removeData">Remove Data</button>
-	<script>
+<script>
 		var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 		var config = {
 			type: 'line',
@@ -157,7 +133,4 @@
 
 			window.myLine.update();
 		});
-	</script>
-</body>
-
-</html>
+</script>

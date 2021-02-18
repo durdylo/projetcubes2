@@ -67,12 +67,10 @@ function setBody($page = false)
     if ($page) {
 
         switch ($page) {
-            case 'grahpique':
-
+            case 'graphique':
                 $html .= "  <main class='container'>
                                 <h1>Page du graphique</h1>
-                                    <div id='curve_chart'></div>
-
+                                <canvas id='canvas'></canvas>
                                 </main>
                                ";
                 break;
@@ -111,6 +109,7 @@ function setBody($page = false)
 /**
  * @return string
  */
+
 function setFooter()
 {
     return "<footer></footer>
@@ -118,12 +117,14 @@ function setFooter()
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js' integrity='sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW' crossorigin='anonymous'></script>
 <script type='text/javascript' src='assets/graph.js'>
     </script>
+    <script src='chart.js'></script>
     </main>
     </body>
     
     </html>";
 
 }
+
 
 
 

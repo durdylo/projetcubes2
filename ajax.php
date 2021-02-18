@@ -30,11 +30,6 @@ var getHttpRequest = function () {
 } 
 
 xmlHttpRequest = getHttpRequest()
-<?php
-
-if ($_GET['p'] == 'graphique')
-{
-?>
 xmlHttpRequest.open("GET", "chart.js")
 }
 </script>
